@@ -7,22 +7,26 @@ import org.lwjgl.system.MemoryUtil;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-public class Square {
+public class Square2 {
 
     public float[] vertices = {
-            0.5f, 0.5f, 0.0f, // 0 -> Top right
-            0.5f, -0.5f, 0.0f, // 1 -> Bottom right
-            -0.5f, -0.5f, 0.0f, // 2 -> Bottom left
-            -0.5f, 0.5f, 0.0f, // 3 -> Top left
+            1.0f,  1.0f, 0.0f, // 0 -> Top right
+            1.0f, -1.0f, 0.0f, // 1 -> Bottom right
+            -1.0f, -1.0f, 0.0f, // 2 -> Bottom left
+            -1.0f,  1.0f, 0.0f, // 3 -> Top left
+            0.0f,  0.0f, 0.0f
     };
     public int[] indices = {
-            0, 1, 2, // First triangle
-            2, 3, 0 // Second triangle
+            0, 1, 4, // Right triangle
+            0, 3, 4, // Top triangle
+            3, 2, 4, // Third triangle
+            2, 1, 4  // Fourth triangle
     };
     float[] color = {
-            0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f,
+            0.8f, 0.8f, 0.8f,
+            0.8f, 0.8f, 0.8f,
+            0.8f, 0.8f, 0.8f,
+            0.8f, 0.8f, 0.8f,
             0.0f, 0.0f, 0.0f,
     };
 
@@ -33,7 +37,7 @@ public class Square {
     private int colorId;
 
 
-    public Square() {
+    public Square2() {
         vaoId = GL33.glGenVertexArrays();
         vboId = GL33.glGenBuffers();
         eboId = GL33.glGenBuffers();
@@ -120,7 +124,7 @@ public class Square {
 
         // Send the buffer (positions) to the GPU
         GL33.glBufferData(GL33.GL_ARRAY_BUFFER, fb, GL33.GL_STATIC_DRAW);
-        GL33.glVertexAttribPointer(0,3, GL33.GL_FLOAT, false, 0, 0);
+        GL33.glVertexAttribPointer(0,4, GL33.GL_FLOAT, false, 0, 0);
         GL33.glEnableVertexAttribArray(0);
     }
 

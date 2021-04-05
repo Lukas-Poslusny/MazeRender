@@ -12,7 +12,7 @@ public class Main {
         GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
         GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 3);
 
-        long window = GLFW.glfwCreateWindow(800, 600, "Eye surgery", 0, 0);
+        long window = GLFW.glfwCreateWindow(800, 600, "Maze", 0, 0);
         if (window == 0) {
             GLFW.glfwTerminate();
             throw new Exception("Unable to open window");
@@ -27,6 +27,8 @@ public class Main {
 
         // Main game loop
         Game.init(window);
+        Game.createDrawableSquaresList();
+        Game.createBackgroundGradiantSquare();
         while (!GLFW.glfwWindowShouldClose(window)) {
 
             // Escape on "esc" keypress
